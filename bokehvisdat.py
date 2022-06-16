@@ -213,5 +213,5 @@ layout = layout([
     [select],
     [fig],
 ])
-
-show(layout)
+curdoc().add_root(layout)
+curdoc().title = "Stock Market Dashboard"
