@@ -61,25 +61,25 @@ silence(MISSING_RENDERERS, True)
 # Use reset_output() between subsequent show() calls, as needed
 # reset_output()
 
-curdoc().theme = "dark_minimal"
+curdoc().theme = "caliber"
 
 # Read Dataset
 
 
 df_HangSeng = pd.read_csv("./Hang_Seng.csv")
-df_HangSeng.head()
+#df_HangSeng.head()
 
 df_NasDaq = pd.read_csv("./Nasdaq.csv")
-df_NasDaq.head()
+#df_NasDaq.head()
 
 df_Nikkei = pd.read_csv("./Nikkei.csv")
-df_Nikkei.head()
+#df_Nikkei.head()
 
-df_HangSeng.shape
+#df_HangSeng.shape
 
-df_NasDaq.shape
+#df_NasDaq.shape
 
-df_Nikkei.shape
+#df_Nikkei.shape
 
 df_Nikkei['Date'] = pd.to_datetime(df_Nikkei['Date'])
 df_NasDaq['Date'] = pd.to_datetime(df_NasDaq['Date'])
@@ -93,7 +93,7 @@ p = figure(title='Hang Seng In Stock Market',
 p.line(x=df_HangSeng['Date'], y=df_HangSeng['Adj Close'],
        line_width=2, line_color="cyan")
 
-show(p)
+#show(p)
 
 p = figure(title='NasDaq In Stock Market',
            x_axis_label='Month-Year', y_axis_label='Price',
@@ -103,7 +103,7 @@ p = figure(title='NasDaq In Stock Market',
 p.line(x=df_NasDaq['Date'], y=df_NasDaq['Adj Close'],
        line_width=2, line_color="orange")
 
-show(p)
+# show(p)
 
 p = figure(title='Nikkei In Stock Market',
            x_axis_label='Month-Year', y_axis_label='Price',
@@ -113,7 +113,7 @@ p = figure(title='Nikkei In Stock Market',
 p.line(x=df_Nikkei['Date'], y=df_Nikkei['Adj Close'],
        line_width=2, line_color="blue")
 
-show(p)
+# show(p)
 
 HangSeng_cds = ColumnDataSource(df_HangSeng)
 NasDaq_cds = ColumnDataSource(df_NasDaq)
@@ -195,6 +195,38 @@ select.js_on_change('value',
                     )
 
 
+
+def set_style(p):
+    # Tick labels
+    p.xaxis.major_label_text_font_size = '6pt'
+    p.yaxis.major_label_text_font_size = '10pt'
+
+
+fig1 = figure(title='Nikkei In Stock Market',
+              x_axis_label='Month-Year', y_axis_label='Price',
+              x_axis_type='datetime',
+              sizing_mode="stretch_width", plot_height=350, plot_width=750)
+fig1.line(x=df_Nikkei['Date'], y=df_Nikkei['Adj Close'],
+          line_width=2, line_color="blue")
+tab1 = Panel(child=fig1, title="Nikkei")
+
+fig2 = figure(title='NasDaq In Stock Market',
+              x_axis_label='Month-Year', y_axis_label='Price',
+              x_axis_type='datetime',
+              sizing_mode="stretch_width", plot_height=350, plot_width=750)
+fig2.line(x=df_NasDaq['Date'], y=df_NasDaq['Adj Close'],
+          line_width=2, line_color="cyan")
+tab2 = Panel(child=fig2, title="NasDaq")
+
+
+tabs = Tabs(tabs=[tab1, tab2])
+
+set_style(fig1)
+set_style(fig2)
+
+
+
+
 fig.add_tools(hover)
 
 fig.title.text_font_size = "25px"
@@ -212,6 +244,7 @@ fig.legend.click_policy = "hide"
 layout = layout([
     [select],
     [fig],
+    [tabs],
 ])
 curdoc().add_root(layout)
 curdoc().title = "Stock Market Dashboard"
