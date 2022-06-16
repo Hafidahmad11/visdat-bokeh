@@ -62,11 +62,11 @@ Note: Sometimes, when rendering multiple visualizations sequentially, you’ll s
 
 """## ..."""
 
-#install library bokeh
-!pip install bokeh
+# #install library bokeh
+# !pip install bokeh
 
-#install library geopandas menggunakan conda
-!pip install geopandas
+# #install library geopandas menggunakan conda
+# !pip install geopandas
 
 curdoc().theme = "dark_minimal"
 
@@ -74,22 +74,22 @@ output_notebook()
 
 """## Read Dataset"""
 
-#hangseng
-!gdown --id 1Uzt5U1VmHN9zjVVta-hDIds9yA4-3d4C
+# #hangseng
+# !gdown --id 1Uzt5U1VmHN9zjVVta-hDIds9yA4-3d4C
 
-#NasDaq
-!gdown --id 12zQMuxYBeZwB9Er9DT7arWWcKrHKwcY6
+# #NasDaq
+# !gdown --id 12zQMuxYBeZwB9Er9DT7arWWcKrHKwcY6
 
-#Nikkei
-!gdown --id 146lPZgsCNY_6wscE4WixYQlAfmWewz9X
+# #Nikkei
+# !gdown --id 146lPZgsCNY_6wscE4WixYQlAfmWewz9X
 
-df_HangSeng = pd.read_csv("Hang_Seng.csv")
+df_HangSeng = pd.read_csv("./Hang_Seng.csv")
 df_HangSeng.head()
 
-df_NasDaq= pd.read_csv("Nasdaq.csv")
+df_NasDaq= pd.read_csv("./Nasdaq.csv")
 df_NasDaq.head()
 
-df_Nikkei = pd.read_csv("Nikkei.csv")
+df_Nikkei = pd.read_csv("./Nikkei.csv")
 df_Nikkei.head()
 
 df_HangSeng.shape
