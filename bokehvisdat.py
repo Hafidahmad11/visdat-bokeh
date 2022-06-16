@@ -34,7 +34,6 @@ Langkah - langkah membuat data menjadi visualisasi dengan Bokeh
 # Data handling
 import pandas as pd
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Bokeh libraries
